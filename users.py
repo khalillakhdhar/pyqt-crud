@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'users.ui'
+# Form implementation generated from reading ui file 'userfinale.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.2
 #
@@ -24,9 +24,9 @@ class Ui_Dialog(object):
 "background-color:rgb(255, 255, 255);")
         self.ajout.setObjectName("ajout")
         self.label_2 = QtWidgets.QLabel(Dialog)
-        self.label_2.setGeometry(QtCore.QRect(170, 10, 111, 41))
+        self.label_2.setGeometry(QtCore.QRect(170, 10, 351, 41))
         self.label_2.setStyleSheet("font: 15pt \"MS Shell Dlg 2\";\n"
-"color:blue")
+"color:rgb(170, 84, 147);")
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(Dialog)
         self.label_3.setGeometry(QtCore.QRect(30, 70, 111, 41))
@@ -46,20 +46,18 @@ class Ui_Dialog(object):
         self.label_6.setObjectName("label_6")
         self.n = QtWidgets.QLineEdit(Dialog)
         self.n.setGeometry(QtCore.QRect(130, 80, 113, 20))
-        self.n.setStyleSheet("color:#fff;\n"
-"border-color:#000;\n"
+        self.n.setStyleSheet("border-color:#000;\n"
 "border-size:4px")
         self.n.setObjectName("n")
         self.p = QtWidgets.QLineEdit(Dialog)
         self.p.setGeometry(QtCore.QRect(130, 110, 113, 20))
-        self.p.setStyleSheet("color:#fff;\n"
+        self.p.setStyleSheet("\n"
 "border-color:#000;\n"
 "border-size:4px")
         self.p.setObjectName("p")
         self.t = QtWidgets.QLineEdit(Dialog)
         self.t.setGeometry(QtCore.QRect(130, 150, 113, 20))
-        self.t.setStyleSheet("color:#fff;\n"
-"border-color:#000;\n"
+        self.t.setStyleSheet("border-color:#000;\n"
 "border-size:4px")
         self.t.setObjectName("t")
         self.nv = QtWidgets.QComboBox(Dialog)
@@ -72,19 +70,26 @@ class Ui_Dialog(object):
         self.formation.setGeometry(QtCore.QRect(300, 120, 251, 41))
         self.formation.setObjectName("formation")
         self.liste = QtWidgets.QTableWidget(Dialog)
-        self.liste.setGeometry(QtCore.QRect(370, 210, 481, 201))
+        self.liste.setGeometry(QtCore.QRect(300, 200, 601, 201))
         self.liste.setStyleSheet("font-color:black")
         self.liste.setObjectName("liste")
-        self.liste.setColumnCount(4)
+        self.liste.setColumnCount(5)
         self.liste.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.liste.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setUnderline(True)
+        font.setWeight(75)
+        item.setFont(font)
         self.liste.setHorizontalHeaderItem(1, item)
         item = QtWidgets.QTableWidgetItem()
         self.liste.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
         self.liste.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.liste.setHorizontalHeaderItem(4, item)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -92,8 +97,9 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        self.ajout.setToolTip(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:12pt; color:#0000ff;\">Ceci sauvegarde un candidat dans votre base</span></p></body></html>"))
         self.ajout.setText(_translate("Dialog", "Ajouter"))
-        self.label_2.setText(_translate("Dialog", "TextLabel"))
+        self.label_2.setText(_translate("Dialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:24pt;\">Gestion des candidats</span></p></body></html>"))
         self.label_3.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600;\">Nom</span></p></body></html>"))
         self.label_4.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600;\">Prenom:</span></p></body></html>"))
         self.label_5.setText(_translate("Dialog", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600;\">Téléphone:</span></p></body></html>"))
@@ -106,9 +112,12 @@ class Ui_Dialog(object):
         item.setText(_translate("Dialog", "Id"))
         item = self.liste.horizontalHeaderItem(1)
         item.setText(_translate("Dialog", "nom"))
+        item.setWhatsThis(_translate("Dialog", "identifiant auto"))
         item = self.liste.horizontalHeaderItem(2)
-        item.setText(_translate("Dialog", "telephone"))
+        item.setText(_translate("Dialog", "prenom"))
         item = self.liste.horizontalHeaderItem(3)
+        item.setText(_translate("Dialog", "telephone"))
+        item = self.liste.horizontalHeaderItem(4)
         item.setText(_translate("Dialog", "niveau"))
 
 

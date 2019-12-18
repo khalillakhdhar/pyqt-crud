@@ -22,10 +22,12 @@ class User(QDialog):
         )
         mycursor = mydb.cursor()
         sql = "INSERT INTO `candidat`( `nom`, `prenom`, `tel`, `niveau`) VALUES (%s, %s,%s,%s)"
-        val = (self.ui.n.text(),self.ui.p.text(),self.ui.t.text(),str(self.ui.nv.currentText))
+        val = (self.ui.n.text(),self.ui.p.text(),self.ui.t.text(),str(self.ui.nv.currentText()))
         mycursor.execute(sql, val)
         mydb.commit()
         print(mycursor.rowcount, "record inserted.")
+        self.lister()
+        self.vider()
     def lister(self):
         mydb = mysql.connector.connect(
         host="localhost",
@@ -39,7 +41,7 @@ class User(QDialog):
        
         self.ui.liste.setRowCount(len(myresult)) ##set number of rows
         
-        self.ui.liste.setColumnCount(4)
+        self.ui.liste.setColumnCount(5)
         i=0 ##this is fixed for myTableWidget, ensure that both of your tables, sql and qtablewidged have the same number of columns
         for x in myresult:
             print(x[0])
@@ -47,7 +49,13 @@ class User(QDialog):
             self.ui.liste.setItem(i,1, QTableWidgetItem(x[1]))
             self.ui.liste.setItem(i,2, QTableWidgetItem(x[2]))
             self.ui.liste.setItem(i,3, QTableWidgetItem(x[3]))
+            self.ui.liste.setItem(i,4, QTableWidgetItem(x[4]))
+
             i+=1
+    def vider(self):
+        self.ui.n.setText('')
+        self.ui.p.setText('')
+        self.ui.t.setText('')
 
         
       
