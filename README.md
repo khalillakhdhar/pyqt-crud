@@ -1,4 +1,4 @@
 # pyqt-crud
-pip install mysql
+pip install PyMySQL
 # create and read user list python 
 #protech-it
