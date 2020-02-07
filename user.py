@@ -1,77 +1,13 @@
-import sys
-import mysql.connector
-
-from PyQt5.QtWidgets import QApplication, QDialog, QTableWidgetItem
-from users import *
-
-class User(QDialog):
-    def __init__(self):
-        super().__init__()
-        self.ui = Ui_Dialog()
-
-        self.ui.setupUi(self)
-        self.lister()
-        self.ui.ajout.clicked.connect(self.add)
-        self.show()
-    def add(self):
-        mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        passwd="",
-        database="formation"
-        )
-        mycursor = mydb.cursor()
-        sql = "INSERT INTO `candidat`( `nom`, `prenom`, `tel`, `niveau`) VALUES (%s, %s,%s,%s)"
-        val = (self.ui.n.text(),self.ui.p.text(),self.ui.t.text(),str(self.ui.nv.currentText()))
-        mycursor.execute(sql, val)
-        mydb.commit()
-        print(mycursor.rowcount, "record inserted.")
-        self.lister()
-        self.vider()
-    def lister(self):
-        mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        passwd="",
-        database="formation"
-        )
-        mycursor = mydb.cursor()
-        mycursor.execute("SELECT * FROM candidat")
-        myresult = mycursor.fetchall()
-       
-        self.ui.liste.setRowCount(len(myresult)) ##set number of rows
-        
-        self.ui.liste.setColumnCount(5)
-        i=0 ##this is fixed for myTableWidget, ensure that both of your tables, sql and qtablewidged have the same number of columns
-        for x in myresult:
-            print(x[0])
-            self.ui.liste.setItem(i,0, QTableWidgetItem(x[0]))
-            self.ui.liste.setItem(i,1, QTableWidgetItem(x[1]))
-            self.ui.liste.setItem(i,2, QTableWidgetItem(x[2]))
-            self.ui.liste.setItem(i,3, QTableWidgetItem(x[3]))
-            self.ui.liste.setItem(i,4, QTableWidgetItem(x[4]))
-
-            i+=1
-    def vider(self):
-        self.ui.n.setText('')
-        self.ui.p.setText('')
-        self.ui.t.setText('')
-
-        
-      
-
-    
-        
-
-            
-        
-if __name__=="__main__":   
-
-    app = QApplication(sys.argv)
-
-    w = User()
-
-    w.show()
-
-    sys.exit(app.exec_())
-    
+class User:
+    def __init__(self,id,nom,login,mdp):
+        self.id=id
+        self.nom=nom
+        self.login=login
+        self.mdp=mdp
+    def __init__(self,login,mdp):
+        self.login=login
+        self.mdp=mdp
+"""u1=User("admin","pass")
+print(u1.login)
+u1.nom="ahmed"
+print(u1.nom)"""
