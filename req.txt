@@ -1,0 +1,2 @@
+#this file needs pyqt5
+#pyqt requirement and qtdesigner
